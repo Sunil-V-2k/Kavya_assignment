@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Volunteer Enrollment</title>
+</head>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #07090b;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #dfb0d3;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+    h1 {
+        text-align: center;
+        color: #000000;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+    label {
+        font-weight: 600;
+        margin-top: 15px;
+        display: block;
+        color: #000000;
+    }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border: 1px solid #111010;
+        box-sizing: border-box;
+        font-size: 16px;
+        color: #151718;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #5cb85c;
+    }
+    textarea {
+        height: 120px;
+        resize: vertical;
+    }
+    .checkbox-group, .radio-group {
+        margin: 15px 0;
+    }
+    .checkbox-group label, .radio-group label {
+        display: inline-block;
+        margin-right: 20px;
+        color: #495057;
+    }
+    .form-section {
+        margin-bottom: 25px;
+    }
+    .button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .button:hover {
+        background-color: #aa2e7c;
+    }
+    .button:active {
+        background-color: #3e9f3e;
+    }
+    /* .form-section .required::after {
+        content: "*";
+        color: red;
+        margin-left: 5px;
+    } */
+    .form-section .note {
+        font-size: 14px;
+        color: #868e96;
+    }
+    .form-section .note a {
+        color: #5cb85c;
+ }
+input:focus,
+    textarea:focus,
+    select:focus {
+        border-color: transparent;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.7), 0 0 15px rgba(0, 123, 255, 0.4);
+        outline: none;
+        transform: scale(1.02);
+    }
+</style>
+
+
+<body>
+<div class="container">
+    <h1>Festival Volunteer Enrollment</h1>
+    <form id="registrationForm" action="process.php" method="POST">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <label for="fullName">Full Name <span class="required">*</span></label>
+            <input type="text" id="fullName" name="fullName">
+        </div>
+
+        <div class="form-section">
+            <label for="dob">Date of Birth <span class="required">*</span></label>
+            <input type="date" id="dob" name="dob">
+        </div>
+
+        <div class="form-section">
+            <label>Gender <span class="required">*</span></label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="Male"> Male</label>
+                <label><input type="radio" name="gender" value="Female"> Female</label>
+                <label><input type="radio" name="gender" value="Other"> Other</label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label for="phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g., +1234567890">
+        </div>
+
+        <div class="form-section">
+            <label for="email">Email Address *</span></label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <div class="form-section">
+            <label for="address">Address <span class="required">*</span></label>
+            <input type="text" id="address" name="address">
+        </div>
+
+        <!-- Availability -->
+        <div class="form-section">
+            <label>Preferred Volunteer Shift(s) <span class="required">*</span></label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="shift[]" value="Morning"> Morning</label>
+                <label><input type="checkbox" name="shift[]" value="Afternoon"> Afternoon</label>
+                <label><input type="checkbox" name="shift[]" value="Evening"> Evening</label>
+                <label><input type="checkbox" name="shift[]" value="Full Day"> Full Day</label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label for="roles">Preferred Volunteer Role(s) <span class="required">*</span></label>
+            <select id="roles" name="roles[]" required>
+                <option value="Select">Select your role</option>
+                <option value="Event Setup/Breakdown">Event Setup/Breakdown</option>
+                <option value="Guest Services">Guest Services</option>
+                <option value="Security">Security</option>
+                <option value="Social Media/Photography">Social Media/Photography</option>
+                <option value="Stage Assistant">Stage Assistant</option>
+                <option value="Ticketing & Crowd Control">Ticketing & Crowd Control</option>
+                <option value="Other">Other (please specify)</option>
+            </select>
+            <input type="text" id="otherRole" name="otherRole" placeholder="If 'Other', please specify" style="display:none;">
+        </div>
+
+        <div class="form-section">
+            <label for="daysAvailable">Are you available for the entire duration of the festival?</label>
+            <select id="daysAvailable" name="daysAvailable">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+        <!-- Skills & Experience -->
+        <div class="form-section">
+            <label for="experience">Do you have any relevant experience or skills that could help in your volunteer role?</label>
+            <textarea id="experience" name="experience"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-section">
+            <button type="submit" class="button">Submit Registration</button>
+        </div>
+    </form>
+    <div id="successMessage"></div>
+</div>
+
+<script src="script1.js"></script>
+<script>
+    
+    
+</script>
+</body>
+</html>
